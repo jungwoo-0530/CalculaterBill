@@ -10,11 +10,9 @@ import java.util.*;
 public class Calculater {
 
   private final List<List<String>> originalCsvList;
-  private final Csv csv;
 
-  public Calculater(List<List<String>> csvList, Csv csv) {
+  public Calculater(List<List<String>> csvList) {
     this.originalCsvList = csvList;
-    this.csv = csv;
   }
 
 

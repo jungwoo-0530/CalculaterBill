@@ -12,10 +12,10 @@ public class Main {
 
   public static void main(String[] args) throws IOException, ParseException {
 
-    String path = "/Users/jungwoo/Desktop/git/CreditCardCalculater/hundai.csv";
+    String path = "/Users/jungwoo/Desktop/git/CalculaterBill/CreditCardCalculater/hundai.csv";
 
     Csv csv = new Csv();
-    Calculater calculater = new Calculater(csv.loadCsv(path), csv);
+    Calculater calculater = new Calculater(csv.loadCsv(path));
 
     Scanner sc = new Scanner(System.in);
     System.out.println("지금으로부터 몇달까지 계산할까요?");
