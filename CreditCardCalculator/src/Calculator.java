@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -10,29 +11,45 @@ import java.util.*;
 public class Calculator {
 
   private final List<List<String>> originalCsvList;
+  private final Csv csv;
 
-  public Calculator(List<List<String>> csvList) {
-    this.originalCsvList = csvList;
+  public Calculator(List<List<String>> originalCsvList, Csv csv) {
+    this.originalCsvList = originalCsvList;
+    this.csv = csv;
   }
 
+  public void resultTotalCostPrint(int targetMonth) throws ParseException, IOException {
 
-  public void resultTotalCostPrint(int targetMonth) throws ParseException {
-
+    List<List<String>> dataListForCsvWrite = new ArrayList<>();
 
     for(int i = 0; i<targetMonth; i++) {
 
       List<List<String>> lists = makeList(originalCsvList, i);
 
       int totalCost = getTotalCost(lists);
-
       System.out.println(lists.get(0).get(0));
-      System.out.println("총 내야할 금액은 "+ totalCost +"입니다.");
+      System.out.println("총 내야할 금액은 " + totalCost + "입니다.");
       System.out.println("=======================================");
+
+
+      dataListForCsvWrite.add(new ArrayList<>() {
+        {
+          add(lists.get(0).get(0));
+        }
+      });
+      dataListForCsvWrite.add(new ArrayList<>() {{
+        add("총 내야할 금액은 " + totalCost + "입니다.");
+      }});
+      dataListForCsvWrite.add(new ArrayList<>() {{
+        add("===============================");
+      }});
     }
+
+    csv.writeCsv(dataListForCsvWrite);
   }
 
 
-  public void calculateBillPrint(String targetDateString) throws ParseException {
+  public void calculateBillPrint(String targetDateString) throws ParseException, IOException {
 
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
     Date targetDate = format.parse(targetDateString);
@@ -50,8 +67,10 @@ public class Calculator {
       }
       System.out.println();
     }
-
     System.out.println("======================================");
+
+
+    csv.writeCsv(results);
 
   }
 
@@ -69,6 +88,7 @@ public class Calculator {
 
     List<List<String>> result = new ArrayList<>();
     String currentDate = getNextMonth(originalCsvList.get(0).get(0), addMonth);
+
 
     result.add(new ArrayList<>(){{
       add(currentDate);

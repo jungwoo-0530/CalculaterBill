@@ -19,17 +19,10 @@ public class Main {
     System.out.println("메뉴를 선택해주세요(해당 인덱스를 입력) : ");
     Scanner sc = new Scanner(System.in);
     int menuSelector = sc.nextInt();
-    switch (menuSelector){
-      case 1:
-
-        calculateTotalCost(sc);
-        break;
-      case 2:
-        calculateBill(sc);
-
+    switch (menuSelector) {
+      case 1 -> calculateTotalCost(sc);
+      case 2 -> calculateBill(sc);
     }
-
-
 
 
   }
@@ -39,17 +32,17 @@ public class Main {
     System.out.println("몇년 몇월을 검색할까요?(ex. 2022-03)");
     String targetDate = sc.next();
 
-    String path = "/Users/jungwoo/Desktop/git/CalculaterBill/CreditCardCalculator/hyundai.csv";
+    String path = "/Users/jungwoo/Desktop/git/CalculaterBill/CreditCardCalculator/csv/hyundai.csv";
 
-    Csv hyundaiCsv = new Csv();
-    Calculator hyundaiCalculator = new Calculator(hyundaiCsv.loadCsv(path));
+    Csv hyundaiCsv = new Csv("Hyundai.csv");
+    Calculator hyundaiCalculator = new Calculator(hyundaiCsv.loadCsv(path), hyundaiCsv);
 
     hyundaiCalculator.calculateBillPrint(targetDate);
 
 
-    path = "/Users/jungwoo/Desktop/git/CalculaterBill/CreditCardCalculator/Sinhan.csv";
-    Csv sinhanCsv = new Csv();
-    Calculator sinhanCalculator = new Calculator(sinhanCsv.loadCsv(path));
+    path = "/Users/jungwoo/Desktop/git/CalculaterBill/CreditCardCalculator/csv/Sinhan.csv";
+    Csv sinhanCsv = new Csv("Sinhan.csv");
+    Calculator sinhanCalculator = new Calculator(sinhanCsv.loadCsv(path), sinhanCsv);
 
     sinhanCalculator.calculateBillPrint(targetDate);
 
@@ -59,10 +52,10 @@ public class Main {
     System.out.println("지금으로부터 몇달까지 계산할까요?");
     int targetMonth = sc.nextInt();
 
-    String path = "/Users/jungwoo/Desktop/git/CalculaterBill/CreditCardCalculater/hyundai.csv";
+    String path = "/Users/jungwoo/Desktop/git/CalculaterBill/CreditCardCalculator/csv/hyundai.csv";
 
-    Csv hyundaiCsv = new Csv();
-    Calculator hyundaiCalculator = new Calculator(hyundaiCsv.loadCsv(path));
+    Csv hyundaiCsv = new Csv("Hyundai.csv");
+    Calculator hyundaiCalculator = new Calculator(hyundaiCsv.loadCsv(path), hyundaiCsv);
 
 
     System.out.println("현대카드");
@@ -71,12 +64,13 @@ public class Main {
     System.out.println("------------------------------------------------------------------------");
     System.out.println("신한카드");
 
-    path = "/Users/jungwoo/Desktop/git/CalculaterBill/CreditCardCalculater/Sinhan.csv";
-    Csv sinhanCsv = new Csv();
-    Calculator sinhanCalculator = new Calculator(sinhanCsv.loadCsv(path));
+    path = "/Users/jungwoo/Desktop/git/CalculaterBill/CreditCardCalculator/csv/Sinhan.csv";
+    Csv sinhanCsv = new Csv("Sinhan.csv");
+    Calculator sinhanCalculator = new Calculator(sinhanCsv.loadCsv(path), sinhanCsv);
 
     sinhanCalculator.resultTotalCostPrint(targetMonth);
   }
+
 
 
 }
