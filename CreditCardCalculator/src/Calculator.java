@@ -16,7 +16,7 @@ public class Calculator {
   }
 
 
-  public void resultPrint(int targetMonth) throws ParseException {
+  public void resultTotalCostPrint(int targetMonth) throws ParseException {
 
 
     for(int i = 0; i<targetMonth; i++) {
@@ -29,6 +29,38 @@ public class Calculator {
       System.out.println("총 내야할 금액은 "+ totalCost +"입니다.");
       System.out.println("=======================================");
     }
+  }
+
+
+  public void calculateBillPrint(String targetDateString) throws ParseException {
+
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
+    Date targetDate = format.parse(targetDateString);
+    Date originDate = format.parse(originalCsvList.get(0).get(0));
+    int monthsDifference =  getMonthsDifference(originDate, targetDate);
+
+
+    List<List<String>> results = makeList(originalCsvList, monthsDifference);
+
+
+    for (List<String> list : results) {
+      for(String str : list){
+        System.out.print(str);
+        System.out.print("  ");
+      }
+      System.out.println();
+    }
+
+    System.out.println("======================================");
+
+  }
+
+  private int getMonthsDifference(Date originDate, Date targetDate) {
+
+    int month1 = originDate.getYear() * 12 + originDate.getMonth();
+    int month2 = targetDate.getYear() * 12 + targetDate.getMonth();
+
+    return month2 - month1;
   }
 
 
