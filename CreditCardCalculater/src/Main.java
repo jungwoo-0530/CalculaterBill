@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -15,23 +14,23 @@ public class Main {
     String path = "/Users/jungwoo/Desktop/git/CalculaterBill/CreditCardCalculater/hyundai.csv";
 
     Csv hyundaiCsv = new Csv();
-    Calculater hyundaiCalculater = new Calculater(hyundaiCsv.loadCsv(path));
+    Calculator hyundaiCalculator = new Calculator(hyundaiCsv.loadCsv(path));
 
     Scanner sc = new Scanner(System.in);
     System.out.println("지금으로부터 몇달까지 계산할까요?");
     int targetMonth = sc.nextInt();
 
     System.out.println("현대카드");
-    hyundaiCalculater.resultPrint(targetMonth);
+    hyundaiCalculator.resultPrint(targetMonth);
 
     System.out.println("------------------------------------------------------------------------");
     System.out.println("신한카드");
 
     path = "/Users/jungwoo/Desktop/git/CalculaterBill/CreditCardCalculater/Sinhan.csv";
     Csv sinhanCsv = new Csv();
-    Calculater sinhanCalculater = new Calculater(sinhanCsv.loadCsv(path));
+    Calculator sinhanCalculator = new Calculator(sinhanCsv.loadCsv(path));
 
-    sinhanCalculater.resultPrint(targetMonth);
+    sinhanCalculator.resultPrint(targetMonth);
 
 
 

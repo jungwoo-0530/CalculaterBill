@@ -3,15 +3,15 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * fileName     : Calculater
+ * fileName     : Calculator
  * author       : jungwoo
  * description  :
  */
-public class Calculater {
+public class Calculator {
 
   private final List<List<String>> originalCsvList;
 
-  public Calculater(List<List<String>> csvList) {
+  public Calculator(List<List<String>> csvList) {
     this.originalCsvList = csvList;
   }
 
@@ -93,16 +93,11 @@ public class Calculater {
   }
 
   //true면 다음달도 나가야하는 것.
-  public Boolean calculaterInstallment(String a, String b, int addMonth) {
-    int currentNum = Integer.parseInt(a)+addMonth;
-    int maxNum = Integer.parseInt(b);
+  public Boolean calculaterInstallment(String currentDate, String maximumDate, int addMonth) {
+    int currentNum = Integer.parseInt(currentDate)+addMonth;
+    int maxNum = Integer.parseInt(maximumDate);
 
-
-    if(maxNum-currentNum < 0)
-      return false;
-    else
-      return true;
-
+    return maxNum - currentNum >= 0;
   }
 
   public int getTotalCost(List<List<String>> list) {

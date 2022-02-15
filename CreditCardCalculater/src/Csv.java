@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * fileName     : CsvReader
+ * fileName     : Csv
  * author       : jungwoo
  * description  :
  */
@@ -19,7 +19,7 @@ public class Csv {
     br = new BufferedReader(new FileReader(csv));
 
     String line = "";
-    List<List<String>> result = new ArrayList<List<String>>();
+    List<List<String>> result = new ArrayList<>();
     while ((line = br.readLine()) != null) {
       String[] token = line.split(",");
       List<String> tempList = new ArrayList<>(Arrays.asList(token));
